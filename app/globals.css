@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: #FBFBF9;
+}
+
+/* progress bar segments */
+.progress-track {
+  display: flex;
+  gap: 6px;
+}
+.progress-seg {
+  height: 4px;
+  flex: 1;
+  border-radius: 999px;
+  background: #E7E7E4;
+  transition: background 300ms ease;
+}
+.progress-seg.done {
+  background: #0B0B0C;
+}
+
+/* checkbox / radio pill */
+.pill {
+  border: 1.5px solid #E7E7E4;
+  transition: all 150ms ease;
+}
+.pill.active {
+  border-color: #0B0B0C;
+  background: #D7FF3D;
+}
+
+/* focus visibility for keyboard nav */
+:focus-visible {
+  outline: 2px solid #0B0B0C;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* onboarding illustration motion */
+@keyframes drift-a {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-8px, -16px) rotate(14deg); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(10px, -12px) rotate(-12deg); }
+}
+@keyframes drift-c {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-6px, 10px) rotate(10deg); }
+}
+.animate-drift-a { animation: drift-a 4.5s ease-in-out infinite; }
+.animate-drift-b { animation: drift-b 5.5s ease-in-out infinite; }
+.animate-drift-c { animation: drift-c 3.8s ease-in-out infinite; }
+
+@keyframes rise-fade {
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-rise { animation: rise-fade 420ms ease-out; }
+
+/* success screen — tick circle pop + checkmark draw-in */
+@keyframes tick-pop {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes tick-draw {
+  0%, 35% { stroke-dashoffset: 1; }
+  100% { stroke-dashoffset: 0; }
+}
+.tick-wrap { animation: tick-pop 480ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.tick-mark {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: tick-draw 520ms ease-out 180ms both;
+}
